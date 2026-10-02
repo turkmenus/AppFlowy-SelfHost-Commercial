@@ -6,9 +6,10 @@ services:
   nginx:
     restart: on-failure
     image: nginx
-    ports:
-      - ${NGINX_PORT:-80}:80   # Disable this if you are using TLS
-      - ${NGINX_TLS_PORT:-443}:443
+    # Host ports disabled — Coolify Traefik handles external traffic
+    # ports:
+    #   - ${NGINX_PORT:-80}:80
+    #   - ${NGINX_TLS_PORT:-443}:443
     volumes:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./docker/nginx/ssl/certificate.crt:/etc/nginx/ssl/certificate.crt
